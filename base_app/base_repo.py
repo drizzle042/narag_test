@@ -25,7 +25,7 @@ class BaseRepo:
             query_logic = {field: keyword}
             query_object = self.model.objects.get(**query_logic)
         except self.model.DoesNotExist:
-            raise NotFound()
+            raise NotFound
         return query_object
 
     def filter_by_keyword(self, keyword):

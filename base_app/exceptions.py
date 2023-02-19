@@ -36,6 +36,12 @@ class FieldRequired(APIException):
     status_code = 400
     default_detail = 'Missing Field Required'
     default_code = 'bad request'
+    
+
+class FieldConflict(APIException):
+    status_code = 409
+    default_detail = 'The resource already exists'
+    default_code = 'Already exists'
 
 
 def custom_exception_handler(exception, context):

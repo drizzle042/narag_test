@@ -16,5 +16,5 @@ class SignInController:
 
         auth = self.auth.check_code(code).gen_token_from_code()
 
-        return self.response.data_response(auth.token)
+        return self.response.data_response({'authToken': auth.token})
         
