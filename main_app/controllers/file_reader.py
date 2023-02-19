@@ -12,7 +12,7 @@ class FileReaderController:
     def read_line(self, request):
         file_name, line = self.request(
             request
-        ).required('fileName', 'read_line')
+        ).required('file_name', 'read_line')
 
         document = self.repo.get_by_keyword('name', file_name)
 

@@ -39,6 +39,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     "rest_framework",
     'base_app',
@@ -48,7 +50,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
 # Rest Framework specific middleware settings
