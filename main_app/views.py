@@ -23,6 +23,9 @@ class FileManagementView(GuardedView):
         super().__init__(**kwargs)
         self.controller = FileController()
 
+    def get(self, request):
+        return self.controller.get_files(request)
+
     def post(self, request):
         return self.controller.upload(request)
 

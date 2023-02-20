@@ -10,21 +10,16 @@ class FileReaderController:
         self.response = http.Response()
 
     def read_line(self, request):
-        file_name, line = self.request(
+        id, line = self.request(
             request
-        ).required('file_name', 'read_line')
+        ).required('id', 'read_line')
 
-        document = self.repo.get_by_keyword('name', file_name)
-
-        if str(line).lower() == 'all':
-            line = document.file.open(mode='r').read()
-        else:
-            try:
-                line_number = int(line) - 1
-            except ValueError:
-                raise exceptions.WrongFieldType(
-                    "'line' must be 'all' or a positive integer"
-                )
+        document = self.repo.get_by_keyword('id', id)
+        
+        try:
+            line_number = int(line) - 1
             line = document.file.open(mode='r').readlines()[line_number]
+        except ValueError:
+            line = document.file.open(mode='r').read()
 
         return self.response.data_response(line)

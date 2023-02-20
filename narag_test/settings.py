@@ -42,13 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
-    "rest_framework",
+    'rest_framework',
+    'corsheaders',
     'base_app',
     'main_app',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 
@@ -56,6 +58,9 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'base_app.exceptions.custom_exception_handler',
 }
+
+# Cors declaration
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'narag_test.urls'
 

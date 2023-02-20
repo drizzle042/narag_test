@@ -40,6 +40,14 @@ class BaseRepo:
     def all(self):
         query_object = self.model.objects.all()
         return query_object
+        
+    def getByIDOrKeyword(self, id, keyword):
+        query_obj = self.all()
+        if keyword:
+            query_obj = self.filter_by_keyword(keyword)
+        if id:
+            query_obj = self.get_by_keyword('id', id)
+        return query_obj
 
     def create(self, **kwargs):
         created_obj = self.model.objects.create(**kwargs)

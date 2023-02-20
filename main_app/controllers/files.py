@@ -1,6 +1,7 @@
 from django.db.utils import IntegrityError
 from base_app import http, exceptions
 from main_app.repo import FileRepo
+from main_app.serializers.files_serializer import FileSerializer
 
 
 class FileController:
@@ -9,6 +10,18 @@ class FileController:
         self.exceptions = exceptions
         self.request = http.Request
         self.response = http.Response()
+        self.serializer = FileSerializer
+
+    def get_files(self, request):
+        id, keyword = self.request(
+            request,
+        ).opts('id', 'keyword')
+
+        files = self.repo.getByIDOrKeyword(id, keyword)
+        many = False if id else True
+
+        serializer = self.serializer(files, many=many)
+        return self.response.data_response(serializer.data)
 
     def upload(self, request):
         name, file = self.request(
