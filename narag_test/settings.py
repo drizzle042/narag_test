@@ -33,7 +33,7 @@ CRYPTOGRAPHIC_ALGORITHM = env("CRYPTOGRAPHIC_ALGORITHM")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['drizzle.pythonanywhere.com']
 
 
 # Application definition
@@ -67,7 +67,7 @@ ROOT_URLCONF = 'narag_test.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,6 +129,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'main_app/templates/static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_URL = 'static/'
 
